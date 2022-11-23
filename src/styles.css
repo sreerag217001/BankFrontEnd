@@ -1,1 +1,29 @@
-/* You can add global styles to this file, and also import other style files */
+.container{
+    width:350px;
+    height:350px;
+    background-color: rgb(128, 128, 128);
+    border-radius: 10px;
+    margin-left: 500px;
+    margin-top: 40px;
+    text-align: center;
+}
+#accnt,#uname,#pwd{
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.login{
+    padding-left:10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color:#4f4b52;
+}
+#accnt,#uname,#pwd{
+    background-color:#bbadc4;
+}
+
+
+
+
