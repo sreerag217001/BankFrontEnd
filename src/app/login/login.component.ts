@@ -42,10 +42,10 @@ pswdChange(event:any){
   this.pswd=event.target.value;
   console.log(this.pswd);
 }
-login(){
+login(a:any,p:any){
   // alert('login clicked');
-   var acno=this.acno;
-   var pswd=this.pswd;
+   var acno=a.value; //1000
+   var pswd=p.value; //1000
    var userDetails=this.userDetails;
    if(acno in userDetails){
     if(pswd==userDetails[acno]['password']){
