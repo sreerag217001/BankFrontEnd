@@ -1,0 +1,10 @@
+.child1{
+    position: absolute;
+    right:900px;
+    
+}
+.child2{
+    position:absolute;
+    left:400px;
+    top:10px;
+}

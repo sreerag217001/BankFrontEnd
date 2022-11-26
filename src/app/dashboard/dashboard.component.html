@@ -1,0 +1,41 @@
+<div class="parent">
+    <div class="child1">
+        <div>
+            <div class="container">
+            
+            <h1>Deposit</h1>
+            
+            <input [(ngModel)]="acno" type="text" id="depo_accnt"  placeholder="Account number">
+            <br><br>
+            <input [(ngModel)]="pswd" type="text" id="depo_pwd"  placeholder="password">
+            <br><br>
+            <input [(ngModel)]="amount" type="text" id="depo_amount"  placeholder="Amount">
+            <br><br>
+            <input class="login" type="button" (click)="deposit()" value="Deposit" class="btn-btn-success mt-4">
+            <br><br>
+            <a routerLink="">Sign in</a>
+            </div>
+        
+        </div>
+    </div>
+    <!-- <div class="parent"> -->
+        <div class="child2">
+            <div>
+                <div class="container">
+                
+                <h1>Withdraw</h1>
+                
+                <input [(ngModel)]="acno1" type="text" id="with_accnt" placeholder="Account number">
+                <br><br>
+                <input [(ngModel)]="pswd1" type="text" id="with_pwd" placeholder="password">
+                <br><br>
+                <input [(ngModel)]="amount1" type="text" id="with_amount" placeholder="Amount">
+                <br><br>
+                <input class="login" type="button" (click)="withdraw()" value="Withdraw" class="btn-btn-success mt-4">
+                <br><br>
+                <a routerLink="">Sign in</a>
+                </div>
+            
+            </div>
+        </div>
+</div>

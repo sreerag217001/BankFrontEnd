@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-login',
@@ -18,13 +20,9 @@ pswd='';
 //properties/variable
 //userdefined methods- (4th execution).
 
-//database
-userDetails:any={
-  1000:{acno:1000,username:'Sreerag',password:1000,balance:1000},
-  1001:{acno:1001,username:'Dipin',password:1001,balance:1000},
-  1002:{acno:1002,username:'Jerit',password:1002,balance:1000},
-}
-  constructor() {} //(1st execution).
+
+//dependency injection
+  constructor(private ds:DataService,private router:Router) {} //(1st execution).
   //It automatically invokes when the object is create.
 
 
@@ -42,21 +40,48 @@ pswdChange(event:any){
   this.pswd=event.target.value;
   console.log(this.pswd);
 }
-login(a:any,p:any){
+// login(a:any,p:any){
+//   // alert('login clicked');
+//    var acno=a.value; //1000
+//    var pswd=p.value; //1000
+//    var userDetails=this.userDetails;
+//    if(acno in userDetails){
+//     if(pswd==userDetails[acno]['password']){
+//       alert('login successfull');
+//     }
+//     else{
+//       alert('invalid password');
+//     }
+//    }
+//    else{
+//     alert('invalid userDeatils');
+//    }
+// }
+login(){
   // alert('login clicked');
-   var acno=a.value; //1000
-   var pswd=p.value; //1000
-   var userDetails=this.userDetails;
-   if(acno in userDetails){
-    if(pswd==userDetails[acno]['password']){
-      alert('login successfull');
-    }
-    else{
-      alert('invalid password');
-    }
+   var acno=this.acno; //1000
+   var pswd=this.pswd; //1000
+   var userDetails=this.ds.userDetails;
+
+   const result=this.ds.login(acno,pswd)
+   if(result){
+    alert('login successfull');
+    this.router.navigateByUrl('dashboard');
    }
    else{
-    alert('invalid userDeatils');
+    alert('login failed');
+    }
    }
-}
-}
+  }
+  //  if(acno in userDetails){
+  //   if(pswd==userDetails[acno]['password']){
+     
+  //   }
+  //   else{
+  //     alert('invalid password');
+  //   }
+  //  }
+  //  else{
+  //   alert('invalid userDeatails');
+  //  }
+
