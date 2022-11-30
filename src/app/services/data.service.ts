@@ -5,40 +5,47 @@ import { ArgumentOutOfRangeError } from 'rxjs';
   providedIn: 'root'
 })
 export class DataService {
+//current user
+currentUser="";
 
+//current acno
+currentAcno="";
   constructor() { }
   //database
 userDetails:any={
-  1000:{acno:1000,username:'Sreerag',password:1000,balance:1000},
-  1001:{acno:1001,username:'Dipin',password:1001,balance:2000},
-  1002:{acno:1002,username:'Jerit',password:1002,balance:900},
-  1003:{acno:1003,username:'Anand',password:1003,balance:3000},
-  1004:{acno:1004,username:'Akash',password:1004,balance:6000},
-  1005:{acno:1005,username:'Adwaith',password:1005,balance:4000},
-  1006:{acno:1006,username:'Vishnu',password:1006,balance:900},
+  1000:{acno:1000,username:'Sreerag',password:1000,balance:1000,transaction:[]},
+  1001:{acno:1001,username:'Dipin',password:1001,balance:2000,transaction:[]},
+  1002:{acno:1002,username:'Jerit',password:1002,balance:900,transaction:[]},
+  1003:{acno:1003,username:'Anand',password:1003,balance:3000,transaction:[]},
+  1004:{acno:1004,username:'Akash',password:1004,balance:6000,transaction:[]},
+  1005:{acno:1005,username:'Adwaith',password:1005,balance:4000,transaction:[]},
+  1006:{acno:1006,username:'Vishnu',password:1006,balance:900,transaction:[]},
   
 }
 register(acno:any,username:any,password:any){
-  let userDeatails=this.userDetails
-  if(acno in userDeatails){
+  let userDetails=this.userDetails
+  if(acno in userDetails){
     return false;
   }
   else{
-    userDeatails[acno]={
+    userDetails[acno]={
       acno:acno,
       username:username,
       password:password,
       balance:0,
+      transaction:[]
     }
-    console.log(userDeatails);
+    console.log(userDetails);
     return true;
   }
 }
 
 login(acno:any,pswd:any){
-  let userDeatails=this.userDetails
-  if(acno in userDeatails){
-    if(pswd==userDeatails[acno]['password']){
+  let userDetails=this.userDetails
+  if(acno in userDetails){
+    if(pswd==userDetails[acno]['password']){
+      this.currentUser=this.userDetails[acno]['username']
+      this.currentAcno=userDetails[acno]['acno']
       return true;
     }
     else{
@@ -50,11 +57,16 @@ login(acno:any,pswd:any){
   }
 }
 deposit(acno:any,pswd:any,amt:any){
-  let userDeatails=this.userDetails;
+  let userDetails=this.userDetails;
   var amount=parseInt(amt)
-  if(acno in userDeatails){
-    if(pswd==userDeatails[acno]['password']){
-      userDeatails[acno]['balance']+=amount;
+  if(acno in userDetails){
+    if(pswd==userDetails[acno]['password']){
+      userDetails[acno]['balance']+=amount;
+      this.userDetails[acno]['transaction'].push({
+        Type:'Credit',
+        Amount:amount
+      })
+      console.log(userDetails);
       return this.userDetails[acno]['balance']
     }
     else{
@@ -74,6 +86,11 @@ withdraw(acno:any,pswd:any,amt:any){
     if(userDetails[acno]['password']){
       if(userDetails[acno]['balance']>=amount){
         userDetails[acno]['balance']-=amount;
+        this.userDetails[acno]['transaction'].push({
+          Type:'Debit',
+          Amount:amount
+        })
+        console.log(userDetails);
         return userDetails[acno]['balance']
       }
       else{
@@ -88,7 +105,12 @@ withdraw(acno:any,pswd:any,amt:any){
   }
   else{
     alert('invalid userDetails')
+    return false;
   }
 }
+getTransaction(acno:any){
+return this.userDetails[acno]['transaction']
 }
+}
+
       

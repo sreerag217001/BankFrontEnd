@@ -1,14 +1,14 @@
-<form action="">
+<form [formGroup]="registerForm">
     <div class="container">
     
     <h1>My Bank</h1>
-    <input [(ngModel)]="uname" type="text" id="uname" name="uname" placeholder="username">
+    <input formControlName="uname" type="text" id="uname" name="uname" placeholder="username">
     <br><br>
-    <input [(ngModel)]="acno" type="texaccnt" id="accnt" name="acno" placeholder="Account number">
+    <input formControlName ="acno" type="texaccnt" id="accnt" name="acno" placeholder="Account number">
     <br><br>
-    <input [(ngModel)]="pswd" type="text" id="pwd" name="password" placeholder="password">
+    <input formControlName ="pswd" type="text" id="pwd" name="password" placeholder="password">
     <br><br>
-    <input class="login" type="button" (click)="register()" value="Register" class="btn-btn-success mt-4">
+    <input formControlName class="login" type="button" (click)="register()" value="Register" class="btn-btn-success mt-4">
     <br><br>
     <a routerLink="">Sign in</a>
     </div>

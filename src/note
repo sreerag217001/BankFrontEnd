@@ -61,3 +61,17 @@ eg:Router class - navigateByUrl is used to navigate the component
 To hold redundent data.
 
 ng g s service_name
+
+5) Angular Directives -To manipulate DOM
+
+a) Componnet Directives(array format).
+b) Structural Directives(table format).
+    1) *ngFor
+
+6) Angular Forms
+a) Template Driven Forms(First design html page cant do validation)
+b) Model Driven Forms(First design model in ts file, Easy Validation methods)
+    -Advancd validation
+    1) Reactive Forms
+       form group,array,control
+       We can directly add validations via Importing Reactive Form Module.

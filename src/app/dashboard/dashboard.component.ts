@@ -17,8 +17,11 @@ export class DashboardComponent implements OnInit {
   pswd1="";
   amount1="";
 
-
-  constructor(private ds:DataService) { }
+//currentUser- login name
+user="";
+  constructor(private ds:DataService) { 
+    this.user=this.ds.currentUser;
+  }
 
   ngOnInit(): void {
   }
