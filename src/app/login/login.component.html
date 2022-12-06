@@ -1,20 +1,23 @@
 
-<div>
+<form [formGroup]="loginForm">
     <div class="container">
-        
     <h1>My Bank</h1>
     <h4 style="color:rgb(42, 46, 165)">{{aim}}</h4>
-    <input type="text" id="uname" placeholder="username">
+    <!-- <input type="text" id="uname" placeholder="username">
+    <div *ngIf="this.loginForm.get('uname')?.errors && this.loginForm.get('uname')?.touched" style="color:rgb(222, 6, 6);">Invalid User</div>
+    <br><br> -->
+    <input formControlName="acno" type="text" id="accnt" name="acno" [placeholder]="account">
+     <div *ngIf="this.loginForm.get('acno')?.errors && this.loginForm.get('acno')?.touched" style="color:rgb(222, 6, 6);">Invalid Account number</div>
     <br><br>
-    <input [(ngModel)]="acno" type="text" id="accnt" name="acno" [placeholder]="account">
-    <br><br>
-    <input [(ngModel)]="pswd" type="password" id="pwd" name="password" placeholder="password">
+    <input formControlName="pswd" type="password" id="pwd" name="password" placeholder="password">
+    <div *ngIf="this.loginForm.get('pswd')?.errors && this.loginForm.get('pswd')?.touched" style="color:rgb(222, 6, 6);">Invalid Password</div>
     <br><br>
     <input class="login" type="button" (click)="login()" value="login" class="btn-btn-success mt-4">
+    
     <br>
     <a href="">forget password</a><br><br>
     <a routerLink="register">Sign up</a>
     </div>
 
-</div>
+</form>
 <!-- <app-dashboard></app-dashboard> -->

@@ -1,46 +1,62 @@
+
+<button class="btn btn-warning" style="float:right;"(click)="logout()">Logout</button>
+<button class="btn btn-danger" style="float:right;"(click)="delete()">Delete</button>
+
 <div class="parent">
-    <div>
+    <div id="body">
         <h1>Welcome {{user}}</h1>
-    <a routerLink="/transaction">View Transcation History</a>
+        <a routerLink="/transaction">View Transcation History</a>
+        <!-- <h3>System Date and Time:{{sdate | date:'short'}}</h3> -->
     </div>
-    
-    <div class="child1">
-        <div>
+    <!-- child component -->
+    <app-delete [item]="acno" (onCancel)="onCancel()"></app-delete>
+    <!-- //oncancel- userdefined event -->
+    <div class="child1" [ngClass]="acno? 'style1':''">
+        <form [formGroup]="depositForm">
             <div class="container">
             
             <h1>Deposit</h1>
             
-            <input [(ngModel)]="acno" type="text" id="depo_accnt"  placeholder="Account number">
+            <input formControlName="acno" type="text" id="depo_accnt"  placeholder="Account number">
+            <div *ngIf="this.depositForm.get('acno')?.errors && this.depositForm.get('acno')?.touched" style="color:rgb(222, 6, 6);">Invalid Account number</div>
             <br><br>
-            <input [(ngModel)]="pswd" type="text" id="depo_pwd"  placeholder="password">
+            <input formControlName="pswd" type="password" id="depo_pwd"  placeholder="password">
+            <div *ngIf="this.depositForm.get('pswd')?.errors && this.depositForm.get('pswd')?.touched" style="color:rgb(222, 6, 6);">Invalid Password</div>
             <br><br>
-            <input [(ngModel)]="amount" type="text" id="depo_amount"  placeholder="Amount">
+            <input formControlName="amount" type="text" id="depo_amount"  placeholder="Amount">
+            <div *ngIf="this.depositForm.get('amount')?.errors && this.depositForm.get('amount')?.touched" style="color:rgb(222, 6, 6);">Invalid Data entry</div>
             <br><br>
             <input class="login" type="button" (click)="deposit()" value="Deposit" class="btn-btn-success mt-4">
             <br><br>
             <a routerLink="">Sign in</a>
             </div>
         
-        </div>
+        </form>
     </div>
     <!-- <div class="parent"> -->
-        <div class="child2">
-            <div>
+        <div class="child2" [ngClass]="acno? 'style1':''">
+            <form [formGroup]="withdrawForm">
                 <div class="container">
                 
                 <h1>Withdraw</h1>
                 
-                <input [(ngModel)]="acno1" type="text" id="with_accnt" placeholder="Account number">
+                <input formControlName="acno" type="text" id="with_accnt" placeholder="Account number">
+                <div *ngIf="this.withdrawForm.get('acno')?.errors && this.withdrawForm.get('acno')?.touched" style="color:rgb(222, 6, 6);">Invalid Account number</div>
                 <br><br>
-                <input [(ngModel)]="pswd1" type="text" id="with_pwd" placeholder="password">
+                
+                <input formControlName="pswd" type="password" id="with_pwd" placeholder="password">
+                <div *ngIf="this.withdrawForm.get('pswd')?.errors && this.withdrawForm.get('pswd')?.touched" style="color:rgb(222, 6, 6);">Invalid Password</div>
                 <br><br>
-                <input [(ngModel)]="amount1" type="text" id="with_amount" placeholder="Amount">
+
+                <input formControlName="amount" type="text" id="with_amount" placeholder="Amount">
+                <div *ngIf="this.withdrawForm.get('amount')?.errors && this.withdrawForm.get('amount')?.touched" style="color:rgb(222, 6, 6);">Invalid Data entry</div>
                 <br><br>
+
                 <input class="login" type="button" (click)="withdraw()" value="Withdraw" class="btn-btn-success mt-4">
                 <br><br>
                 <a routerLink="">Sign in</a>
                 </div>
             
-            </div>
+            </form>
         </div>
 </div>

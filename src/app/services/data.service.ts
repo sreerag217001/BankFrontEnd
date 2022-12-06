@@ -1,3 +1,4 @@
+import { LowerCasePipe } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { ArgumentOutOfRangeError } from 'rxjs';
 
@@ -10,7 +11,35 @@ currentUser="";
 
 //current acno
 currentAcno="";
-  constructor() { }
+  constructor() {
+  this.getDetails();
+  }
+
+  //saveDetails()- To store data into local storage.
+
+  saveDetails(){
+    if(this.userDetails){
+      localStorage.setItem('DataBase',JSON.stringify(this.userDetails))
+    }
+    if(this.currentUser){
+      localStorage.setItem('currentUser',JSON.stringify(this.currentUser))
+    }
+    if(this.currentAcno){
+      localStorage.setItem('currentAcno',JSON.stringify(this.currentAcno))
+    }
+  }
+
+  getDetails(){
+    if(this.userDetails){
+      this.userDetails=JSON.parse(localStorage.getItem('DataBase')||'')
+    }
+    if(this.currentAcno){
+      this.currentAcno=JSON.parse(localStorage.getItem('currentAcno')||'')
+    }
+    if(this.currentUser){
+      this.currentUser=JSON.parse(localStorage.getItem('currentUser')||'')
+    }
+  }
   //database
 userDetails:any={
   1000:{acno:1000,username:'Sreerag',password:1000,balance:1000,transaction:[]},
@@ -36,6 +65,7 @@ register(acno:any,username:any,password:any){
       transaction:[]
     }
     console.log(userDetails);
+    this.saveDetails();
     return true;
   }
 }
@@ -46,6 +76,7 @@ login(acno:any,pswd:any){
     if(pswd==userDetails[acno]['password']){
       this.currentUser=this.userDetails[acno]['username']
       this.currentAcno=userDetails[acno]['acno']
+      this.saveDetails();
       return true;
     }
     else{
@@ -67,6 +98,7 @@ deposit(acno:any,pswd:any,amt:any){
         Amount:amount
       })
       console.log(userDetails);
+      this.saveDetails();
       return this.userDetails[acno]['balance']
     }
     else{
@@ -91,6 +123,7 @@ withdraw(acno:any,pswd:any,amt:any){
           Amount:amount
         })
         console.log(userDetails);
+        this.saveDetails();
         return userDetails[acno]['balance']
       }
       else{

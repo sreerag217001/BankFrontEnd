@@ -67,6 +67,7 @@ ng g s service_name
 a) Componnet Directives(array format).
 b) Structural Directives(table format).
     1) *ngFor
+    2) ngIf
 
 6) Angular Forms
 a) Template Driven Forms(First design html page cant do validation)
@@ -75,3 +76,21 @@ b) Model Driven Forms(First design model in ts file, Easy Validation methods)
     1) Reactive Forms
        form group,array,control
        We can directly add validations via Importing Reactive Form Module.
+
+7) Local Storage
+     -setItem- To store data.
+     -getItem- To retrieve data.
+     -removeItem- To  remove data.
+
+8) Parent child communication
+
+   parent -> child
+   child -> parent
+
+eg:
+    Dashboard -> parent
+    delete -> child
+
+9) Angular pipes
+
+{{value expression | date [ : format [ : timezone [ : locale ] ] ] }}

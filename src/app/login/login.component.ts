@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder,Validators, } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataService } from '../services/data.service';
 
@@ -19,10 +20,13 @@ pswd='';
   //class- Collection of properties and methods
 //properties/variable
 //userdefined methods- (4th execution).
-
+loginForm=this.fb.group({//group
+  acno:['',[Validators.required,Validators.pattern('[0-9]*')]],
+  pswd:['',[Validators.required,Validators.pattern('[0-9a-zA-Z]*')]],
+})
 
 //dependency injection
-  constructor(private ds:DataService,private router:Router) {} //(1st execution).
+  constructor(private ds:DataService,private router:Router,private fb:FormBuilder) {} //(1st execution).
   //It automatically invokes when the object is create.
 
 
@@ -59,9 +63,10 @@ pswdChange(event:any){
 // }
 login(){
   // alert('login clicked');
-   var acno=this.acno; //1000
-   var pswd=this.pswd; //1000
+   var acno=this.loginForm.value.acno; //1000
+   var pswd=this.loginForm.value.pswd; //1000
    var userDetails=this.ds.userDetails;
+   if(this.loginForm.valid){
 
    const result=this.ds.login(acno,pswd)
    if(result){
@@ -72,7 +77,11 @@ login(){
     alert('login failed');
     }
    }
+   else{
+    alert('Invalid forms');
+   }
   }
+}
   //  if(acno in userDetails){
   //   if(pswd==userDetails[acno]['password']){
      
