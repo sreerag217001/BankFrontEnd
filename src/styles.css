@@ -1,7 +1,7 @@
 .container{
     width:400px;
-    height:400px;
-    background-color: rgb(78, 145, 155);
+    height:450px;
+    background-color: rgb(90, 123, 128);
     border-radius: 10px;
     margin-left: 500px;
     margin-top: 40px;
@@ -21,7 +21,11 @@
     background-color:#3636d7;
 }
 #accnt,#uname,#pwd{
-    background-color:#a3a392;
+    background-color:#e7e7dd;
+}
+body{
+    background-image: url('https://i.postimg.cc/SNfzq0QM/2666319.webp');
+
 }
 
 

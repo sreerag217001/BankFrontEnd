@@ -31,8 +31,8 @@ loginForm=this.fb.group({//group
 
 
   ngOnInit(): void {//(2nd execution).
-    //For initial process of component
     //lifecycle hook of Angular
+    //used For initial process of component
   }
   
 acnoChange(event:any){
@@ -68,29 +68,18 @@ login(){
    var userDetails=this.ds.userDetails;
    if(this.loginForm.valid){
 
-   const result=this.ds.login(acno,pswd)
-   if(result){
-    alert('login successfull');
-    this.router.navigateByUrl('dashboard');
-   }
-   else{
-    alert('login failed');
-    }
-   }
-   else{
-    alert('Invalid forms');
-   }
+  this.ds.login(acno,pswd)
+  .subscribe((result:any)=>{
+    localStorage.setItem('currentUser',JSON.stringify(result.currentUser));
+    localStorage.setItem('currentAcno',JSON.stringify(result.currentAcno));
+    localStorage.setItem('token',JSON.stringify(result.token));
+   alert(result.message);
+   this.router.navigateByUrl('dashboard')
+  },
+  result=>{
+    alert(result.error.message)
   }
+  )
 }
-  //  if(acno in userDetails){
-  //   if(pswd==userDetails[acno]['password']){
-     
-  //   }
-  //   else{
-  //     alert('invalid password');
-  //   }
-  //  }
-  //  else{
-  //   alert('invalid userDeatails');
-  //  }
-
+}}
+  

@@ -35,7 +35,7 @@ iii) event binding using template referencing variable- #variable_name
 
 b) Two way data binding(Two-direction)- ts=>html, html=>ts
 
-1) ngModel -formsModule in app.module
+1) ngModel -To use ngModel we have a formsModule in app.module (formsModule is updated  in app.module)
 - [(ngModal)]="property_name"
 
 2) Angular Routing
@@ -54,6 +54,7 @@ login{
 
 To share data between two dependend classes
 
+constructor(private router:Router)
 eg:Router class - navigateByUrl is used to navigate the component
 
 4) Angular services
